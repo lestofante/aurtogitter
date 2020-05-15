@@ -31,6 +31,9 @@ update.sh <path_to_aur_repo_folder>
 any failure of any step will lead to immediate interruption of the script.
 
 ## example MAKEPKG
+
+This minimal example is a great starting point and should be following all the current best practise (hash of git repo are not supported)
+
 ```
 # Maintainer: lesto <lestofante88@gmail.com>
 pkgname=pacman-parallelizer
