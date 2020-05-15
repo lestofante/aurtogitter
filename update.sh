@@ -12,6 +12,7 @@ package_dir=$1
 cd $package_dir
 
 git reset --hard HEAD
+git pull
 
 . ./PKGBUILD
 
