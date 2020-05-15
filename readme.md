@@ -13,7 +13,7 @@ It also assume you have all the necessary setup to push the repo (ssh key, git u
 ## update.sh
 
 ### usage
-update.sh <path_to_aur_repo>
+update.sh <path_to_aur_repo_folder>
 
 ### behaviur
 
@@ -29,3 +29,30 @@ update.sh <path_to_aur_repo>
 - push the modification
 
 any failure of any step will lead to immediate interruption of the script.
+
+## example MAKEPKG
+```
+# Maintainer: lesto <lestofante88@gmail.com>
+pkgname=pacman-parallelizer
+pkgver=8
+pkgrel=2
+pkgdesc="A minimal package downloader for pacman, using aria2"
+arch=(any)
+url="https://github.com/lestofante/PacmanParallelizer"
+urlgit="https://github.com/lestofante/PacmanParallelizer.git"
+license=('GPL3')
+depends=('aria2' 'pacman-contrib')
+source=("$pkgname-$pkgver"::"git+$urlgit#tag=$pkgver")
+sha256sums=('SKIP')
+
+build() {
+	cd "$srcdir/$pkgname-$pkgver"
+	chmod +x ./pp.sh
+}
+
+package() {
+	cd "$srcdir/$pkgname-$pkgver"
+	mkdir -p "$pkgdir/usr/bin"
+	cp pp.sh "$pkgdir/usr/bin"
+}
+```
